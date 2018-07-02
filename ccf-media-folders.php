@@ -52,14 +52,29 @@ class CCF_Media_Folders {
 
         // @TODO: Check to see if term exits
 
+        $labels = [
+            'name'              => _x( 'Folders', 'taxonomy general name', 'custom-contact-forms' ),
+            'singular_name'     => _x( 'Folder', 'taxonomy singular name', 'custom-contact-forms' ),
+            'search_items'      => __( 'Search Folders', 'custom-contact-forms' ),
+            'all_items'         => __( 'All Folders', 'custom-contact-forms' ),
+            'parent_item'       => __( 'Parent Folder', 'custom-contact-forms' ),
+            'parent_item_colon' => __( 'Parent Folder:', 'custom-contact-forms' ),
+            'edit_item'         => __( 'Edit Folder', 'custom-contact-forms' ),
+            'update_item'       => __( 'Update Folder', 'custom-contact-forms' ),
+            'add_new_item'      => __( 'Add New Folder', 'custom-contact-forms' ),
+            'new_item_name'     => __( 'New Folder Name', 'custom-contact-forms' ),
+            'menu_name'         => __( 'Folders', 'custom-contact-forms' ),
+        ];
+
         register_taxonomy(
             'folder',
             'attachment',
-            array(
-                'label' => __( 'Folders', 'custom-contact-forms' ),
-                'rewrite' => array( 'slug' => 'folders' ),
-                'hierarchical' => true,
-            )
+            [
+                'labels'            => $labels,
+                'rewrite'           => [ 'slug' => 'folders' ],
+                'hierarchical'      => true,
+                'show_admin_column' => true,
+            ]
         );
     }
 
