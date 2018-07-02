@@ -15,6 +15,11 @@ class CCF_Media_Folders {
      */
     private static $instance;
 
+    /**
+     * The instance of CCF_Media_Folders.
+     *
+     * @since 0.1.0
+     */
     public static function get_instance() {
 
         if (null === self::$instance) {
@@ -65,8 +70,15 @@ class CCF_Media_Folders {
      *
      * @author Marcus Battle
      *
+     * @param int     $post_ID      Post ID.
+     * @param WP_Post $post_after   Post object following the update.
+     * @param WP_Post $post_before  Post object before the update.
      */
     public function assign_attachment_to_folder( int $post_ID, WP_Post $post_after, WP_Post $post_before ) {
+
+        if ( ! $post_after->post_parent ) {
+            return;
+        }
 
         // Only assign category to the upload if it was uploaded during a form submission.
         if ( 'ccf_submission' === get_post_type( $post_after->post_parent ) ) {
